@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahil Trading Lab</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="bg"></div>
+<header>
+  <div class="brand"><span>STL</span><div><strong>SAHIL TRADING LAB</strong><small>Trading Journal & Analytics</small></div></div>
+  <nav>
+    <button class="nav active" data-page="dashboard">Dashboard</button>
+    <button class="nav" data-page="journal">Trade Journal</button>
+    <button class="nav" data-page="analytics">Analytics</button>
+    <button class="nav" data-page="calendar">Calendar</button>
+    <button class="nav" data-page="risk">Risk Tools</button>
+  </nav>
+</header>
+
+<main>
+<section id="dashboard" class="page active">
+  <div class="hero"><div><p class="eyebrow">WELCOME BACK</p><h1>Your Trading Command Center</h1><p>Track trades, understand your performance and improve your process.</p></div><button class="primary" onclick="showPage('journal'); document.getElementById('tradeForm').scrollIntoView()">＋ Add Trade</button></div>
+  <div class="cards">
+    <div class="card"><small>NET P&L</small><b id="netPnl">$0.00</b></div>
+    <div class="card"><small>WIN RATE</small><b id="winRate">0%</b></div>
+    <div class="card"><small>TRADES</small><b id="tradeCount">0</b></div>
+    <div class="card"><small>PROFIT FACTOR</small><b id="profitFactor">0.00</b></div>
+  </div>
+  <div class="grid2">
+    <div class="panel"><div class="panelhead"><h2>Equity Curve</h2><span id="streak">No trades yet</span></div><canvas id="equityChart"></canvas></div>
+    <div class="panel"><div class="panelhead"><h2>Performance</h2></div><div class="stats">
+      <div><span>Winning trades</span><strong id="wins">0</strong></div>
+      <div><span>Losing trades</span><strong id="losses">0</strong></div>
+      <div><span>Average win</span><strong id="avgWin">$0.00</strong></div>
+      <div><span>Average loss</span><strong id="avgLoss">$0.00</strong></div>
+      <div><span>Best trade</span><strong id="best">$0.00</strong></div>
+      <div><span>Worst trade</span><strong id="worst">$0.00</strong></div>
+    </div></div>
+  </div>
+</section>
+
+<section id="journal" class="page">
+  <div class="hero"><div><p class="eyebrow">JOURNAL</p><h1>Trade Journal</h1><p>Record the setup, execution and lesson behind every trade.</p></div></div>
+  <div class="panel" id="tradeForm">
+    <h2>Add a Trade</h2>
+    <form id="form">
+      <div class="formgrid">
+        <label>Date<input id="date" type="date" required></label>
+        <label>Instrument<input id="instrument" placeholder="XAUUSD / BTCUSD" required></label>
+        <label>Direction<select id="direction"><option>BUY</option><option>SELL</option></select></label>
+        <label>Entry<input id="entry" type="number" step="any" placeholder="0" required></label>
+        <label>Exit<input id="exit" type="number" step="any" placeholder="0" required></label>
+        <label>Stop Loss<input id="sl" type="number" step="any" placeholder="Optional"></label>
+        <label>Take Profit<input id="tp" type="number" step="any" placeholder="Optional"></label>
+        <label>P&L ($)<input id="pnl" type="number" step="any" placeholder="Profit/loss" required></label>
+        <label>Risk %<input id="risk" type="number" step="any" placeholder="1"></label>
+        <label>Strategy<input id="strategy" placeholder="Breakout / S&R / etc."></label>
+        <label>Session<select id="session"><option>London</option><option>New York</option><option>Asia</option><option>Other</option></select></label>
+        <label>Emotion<select id="emotion"><option>Calm</option><option>Confident</option><option>FOMO</option><option>Revenge</option><option>Uncertain</option></select></label>
+      </div>
+      <label>Reason for entry<textarea id="reason" placeholder="Why did you take this trade?"></textarea></label>
+      <label>Lesson / mistake<textarea id="lesson" placeholder="What will you repeat or improve?"></textarea></label>
+      <button class="primary" type="submit">Save Trade</button>
+    </form>
+  </div>
+  <div class="panel"><div class="panelhead"><h2>Trade History</h2><input id="search" class="search" placeholder="Search instrument or strategy"></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Instrument</th><th>Side</th><th>Strategy</th><th>P&L</th><th>Emotion</th><th></th></tr></thead><tbody id="tradeTable"></tbody></table></div></div>
+</section>
+
+<section id="analytics" class="page">
+  <div class="hero"><div><p class="eyebrow">ANALYTICS</p><h1>Performance Analytics</h1><p>Find which setups, instruments and sessions work best for you.</p></div></div>
+  <div class="grid2">
+    <div class="panel"><h2>P&L by Strategy</h2><canvas id="strategyChart"></canvas></div>
+    <div class="panel"><h2>P&L by Instrument</h2><canvas id="instrumentChart"></canvas></div>
+  </div>
+  <div class="panel"><h2>Trading Process</h2><div id="insights" class="insights">Add some trades to generate insights.</div></div>
+</section>
+
+<section id="calendar" class="page">
+  <div class="hero"><div><p class="eyebrow">REVIEW</p><h1>Trading Calendar</h1><p>See your performance day by day.</p></div></div>
+  <div class="panel"><div class="calendarhead"><button onclick="changeMonth(-1)">‹</button><h2 id="monthTitle"></h2><button onclick="changeMonth(1)">›</button></div><div class="week"><b>Sun</b><b>Mon</b><b>Tue</b><b>Wed</b><b>Thu</b><b>Fri</b><b>Sat</b></div><div id="calendarGrid" class="calgrid"></div></div>
+</section>
+
+<section id="risk" class="page">
+  <div class="hero"><div><p class="eyebrow">RISK MANAGEMENT</p><h1>Risk Tools</h1><p>Plan the trade before entering it.</p></div></div>
+  <div class="grid2">
+    <div class="panel"><h2>Position Size Calculator</h2>
+      <div class="calc"><label>Account balance<input id="balance" type="number" value="1000"></label><label>Risk %<input id="riskPct" type="number" value="1" step=".1"></label><label>Entry<input id="rEntry" type="number" step="any"></label><label>Stop Loss<input id="rSl" type="number" step="any"></label><label>Value per price unit<input id="valueUnit" type="number" value="1" step="any"></label><button class="primary" onclick="calcSize()">Calculate</button><div class="result" id="sizeResult">Enter your numbers.</div></div>
+    </div>
+    <div class="panel"><h2>Risk / Reward</h2>
+      <div class="calc"><label>Entry<input id="rrEntry" type="number" step="any"></label><label>Stop Loss<input id="rrSl" type="number" step="any"></label><label>Take Profit<input id="rrTp" type="number" step="any"></label><button class="primary" onclick="calcRR()">Calculate R:R</button><div class="result" id="rrResult">Enter your levels.</div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer>SAHIL TRADING LAB • Data is stored locally in your browser.</footer>
+<script src="script.js"></script>
+</body>
+</html>
