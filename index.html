@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sahil Trading Lab</title>
+<title>Trade X — Trading Journal & Analytics</title>
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="bg"></div>
 <header>
-  <div class="brand"><span>STL</span><div><strong>SAHIL TRADING LAB</strong><small>Trading Journal & Analytics</small></div></div>
+  <div class="brand"><span>TX</span><div><strong>TRADE X</strong><small>Journal • Analyze • Evolve</small></div></div>
   <nav>
     <button class="nav active" data-page="dashboard">Dashboard</button>
     <button class="nav" data-page="journal">Trade Journal</button>
@@ -18,7 +18,23 @@
     <button class="nav" data-page="calendar">Calendar</button>
     <button class="nav" data-page="risk">Risk Tools</button>
   </nav>
+  <button class="themeToggle" id="themeToggle" aria-label="Open themes">✦ Themes</button>
 </header>
+
+<div class="themePanel" id="themePanel">
+  <h3>Trade X Themes</h3>
+  <p>Premium animated backgrounds. Your choice is saved on this device.</p>
+  <div class="themeGrid">
+    <button class="themeBtn t1" data-theme="1"><b>Obsidian Pulse</b><span>Black • Violet • Magenta</span></button>
+    <button class="themeBtn t2" data-theme="2"><b>Violet Silk</b><span>Deep purple • Soft glow</span></button>
+    <button class="themeBtn t3" data-theme="3"><b>Magenta Flow</b><span>Black • Pink • Violet</span></button>
+    <button class="themeBtn t4" data-theme="4"><b>Ultraviolet</b><span>Black • Electric violet</span></button>
+    <button class="themeBtn t5" data-theme="5"><b>Pearl Luxe</b><span>White • Silver • Violet</span></button>
+    <button class="themeBtn t6" data-theme="6"><b>Rose Chrome</b><span>Black • Rose • Glass</span></button>
+    <button class="themeBtn t7" data-theme="7"><b>Neon Velvet</b><span>Purple • Magenta • Black</span></button>
+    <button class="themeBtn t8" data-theme="8"><b>Midnight Glass</b><span>Black • Smoke • Lavender</span></button>
+  </div>
+</div>
 
 <main>
 <section id="dashboard" class="page active">
@@ -95,7 +111,7 @@
   </div>
 </section>
 </main>
-<footer>SAHIL TRADING LAB • Data is stored locally in your browser.</footer>
+<footer>TRADE X • Journal • Analyze • Evolve • Data is stored locally in your browser.</footer>
 <script src="script.js"></script>
 </body>
 </html>

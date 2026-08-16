@@ -21,3 +21,20 @@ function changeMonth(n){calDate.setMonth(calDate.getMonth()+n);renderCalendar()}
 function calcSize(){let b=+$("balance").value,r=+$("riskPct").value,e=+$("rEntry").value,s=+$("rSl").value,v=+$("valueUnit").value;let risk=b*r/100,d=Math.abs(e-s),size=d&&v?risk/(d*v):0;$("sizeResult").textContent=size?`Risk amount: ${money(risk)} • Suggested size: ${size.toFixed(4)}`:"Enter valid values."}
 function calcRR(){let e=+$("rrEntry").value,s=+$("rrSl").value,t=+$("rrTp").value,r=Math.abs(e-s),reward=Math.abs(t-e);$("rrResult").textContent=r?`Risk: ${r.toFixed(4)} • Reward: ${reward.toFixed(4)} • R:R = ${(reward/r).toFixed(2)}R`:"Enter valid levels."}
 updateAll();
+// Trade X premium theme engine
+(function(){
+  const themeToggle=document.getElementById('themeToggle');
+  const themePanel=document.getElementById('themePanel');
+  const buttons=[...document.querySelectorAll('.themeBtn')];
+  const saved=localStorage.getItem('tradeXTheme')||'1';
+  function applyTheme(n){
+    document.body.className=document.body.className.replace(/\btheme-\d+\b/g,'').trim();
+    if(n!=='1') document.body.classList.add('theme-'+n);
+    buttons.forEach(b=>b.classList.toggle('active',b.dataset.theme===n));
+    localStorage.setItem('tradeXTheme',n);
+  }
+  applyTheme(saved);
+  themeToggle.addEventListener('click',()=>themePanel.classList.toggle('open'));
+  buttons.forEach(b=>b.addEventListener('click',()=>applyTheme(b.dataset.theme)));
+  document.addEventListener('click',e=>{if(themePanel.classList.contains('open')&&!themePanel.contains(e.target)&&e.target!==themeToggle)themePanel.classList.remove('open')});
+})();
