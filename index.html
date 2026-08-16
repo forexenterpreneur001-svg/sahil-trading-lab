@@ -4,114 +4,202 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trade X — Trading Journal & Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
-<div class="bg"></div>
-<header>
-  <div class="brand"><span>TX</span><div><strong>TRADE X</strong><small>Journal • Analyze • Evolve</small></div></div>
-  <nav>
-    <button class="nav active" data-page="dashboard">Dashboard</button>
-    <button class="nav" data-page="journal">Trade Journal</button>
-    <button class="nav" data-page="analytics">Analytics</button>
-    <button class="nav" data-page="calendar">Calendar</button>
-    <button class="nav" data-page="risk">Risk Tools</button>
-  </nav>
-  <button class="themeToggle" id="themeToggle" aria-label="Open themes">✦ Themes</button>
-</header>
 
-<div class="themePanel" id="themePanel">
-  <h3>Trade X Themes</h3>
-  <p>Premium animated backgrounds. Your choice is saved on this device.</p>
-  <div class="themeGrid">
-    <button class="themeBtn t1" data-theme="1"><b>Obsidian Pulse</b><span>Black • Violet • Magenta</span></button>
-    <button class="themeBtn t2" data-theme="2"><b>Violet Silk</b><span>Deep purple • Soft glow</span></button>
-    <button class="themeBtn t3" data-theme="3"><b>Magenta Flow</b><span>Black • Pink • Violet</span></button>
-    <button class="themeBtn t4" data-theme="4"><b>Ultraviolet</b><span>Black • Electric violet</span></button>
-    <button class="themeBtn t5" data-theme="5"><b>Pearl Luxe</b><span>White • Silver • Violet</span></button>
-    <button class="themeBtn t6" data-theme="6"><b>Rose Chrome</b><span>Black • Rose • Glass</span></button>
-    <button class="themeBtn t7" data-theme="7"><b>Neon Velvet</b><span>Purple • Magenta • Black</span></button>
-    <button class="themeBtn t8" data-theme="8"><b>Midnight Glass</b><span>Black • Smoke • Lavender</span></button>
-  </div>
+<body>
+<div class="ambient" aria-hidden="true">
+  <span class="orb orb-a"></span>
+  <span class="orb orb-b"></span>
+  <span class="orb orb-c"></span>
+  <span class="noise"></span>
 </div>
 
-<main>
-<section id="dashboard" class="page active">
-  <div class="hero"><div><p class="eyebrow">WELCOME BACK</p><h1>Your Trading Command Center</h1><p>Track trades, understand your performance and improve your process.</p></div><button class="primary" onclick="showPage('journal'); document.getElementById('tradeForm').scrollIntoView()">＋ Add Trade</button></div>
-  <div class="cards">
-    <div class="card"><small>NET P&L</small><b id="netPnl">$0.00</b></div>
-    <div class="card"><small>WIN RATE</small><b id="winRate">0%</b></div>
-    <div class="card"><small>TRADES</small><b id="tradeCount">0</b></div>
-    <div class="card"><small>PROFIT FACTOR</small><b id="profitFactor">0.00</b></div>
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark"><span>TX</span></div>
+    <div>
+      <strong>TRADE <em>X</em></strong>
+      <small>Journal • Analyze • Evolve</small>
+    </div>
   </div>
-  <div class="grid2">
-    <div class="panel"><div class="panelhead"><h2>Equity Curve</h2><span id="streak">No trades yet</span></div><canvas id="equityChart"></canvas></div>
-    <div class="panel"><div class="panelhead"><h2>Performance</h2></div><div class="stats">
-      <div><span>Winning trades</span><strong id="wins">0</strong></div>
-      <div><span>Losing trades</span><strong id="losses">0</strong></div>
-      <div><span>Average win</span><strong id="avgWin">$0.00</strong></div>
-      <div><span>Average loss</span><strong id="avgLoss">$0.00</strong></div>
-      <div><span>Best trade</span><strong id="best">$0.00</strong></div>
-      <div><span>Worst trade</span><strong id="worst">$0.00</strong></div>
-    </div></div>
-  </div>
-</section>
 
-<section id="journal" class="page">
-  <div class="hero"><div><p class="eyebrow">JOURNAL</p><h1>Trade Journal</h1><p>Record the setup, execution and lesson behind every trade.</p></div></div>
-  <div class="panel" id="tradeForm">
-    <h2>Add a Trade</h2>
-    <form id="form">
-      <div class="formgrid">
-        <label>Date<input id="date" type="date" required></label>
-        <label>Instrument<input id="instrument" placeholder="XAUUSD / BTCUSD" required></label>
-        <label>Direction<select id="direction"><option>BUY</option><option>SELL</option></select></label>
-        <label>Entry<input id="entry" type="number" step="any" placeholder="0" required></label>
-        <label>Exit<input id="exit" type="number" step="any" placeholder="0" required></label>
-        <label>Stop Loss<input id="sl" type="number" step="any" placeholder="Optional"></label>
-        <label>Take Profit<input id="tp" type="number" step="any" placeholder="Optional"></label>
-        <label>P&L ($)<input id="pnl" type="number" step="any" placeholder="Profit/loss" required></label>
-        <label>Risk %<input id="risk" type="number" step="any" placeholder="1"></label>
-        <label>Strategy<input id="strategy" placeholder="Breakout / S&R / etc."></label>
-        <label>Session<select id="session"><option>London</option><option>New York</option><option>Asia</option><option>Other</option></select></label>
-        <label>Emotion<select id="emotion"><option>Calm</option><option>Confident</option><option>FOMO</option><option>Revenge</option><option>Uncertain</option></select></label>
+  <div class="top-actions">
+    <button class="icon-btn" title="Notifications" aria-label="Notifications">♢</button>
+    <button class="profile">S</button>
+  </div>
+</header>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="side-brand">
+      <div class="brand-mark"><span>TX</span></div>
+      <strong>TRADE <em>X</em></strong>
+    </div>
+
+    <nav class="side-nav">
+      <button class="nav active" data-page="dashboard"><span>▦</span>Dashboard</button>
+      <button class="nav" data-page="journal"><span>▤</span>Journal</button>
+      <button class="nav" data-page="analytics"><span>◔</span>Analytics</button>
+      <button class="nav" data-page="calendar"><span>▣</span>Calendar</button>
+      <button class="nav" data-page="risk"><span>♢</span>Risk Tools</button>
+      <button class="nav" data-page="themes"><span>✦</span>Themes</button>
+    </nav>
+
+    <div class="side-bottom">
+      <button class="side-link"><span>⚙</span>Settings</button>
+      <button class="side-link"><span>?</span>Help</button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <div class="mobile-nav">
+      <button class="nav active" data-page="dashboard">Dashboard</button>
+      <button class="nav" data-page="journal">Journal</button>
+      <button class="nav" data-page="analytics">Analytics</button>
+      <button class="nav" data-page="calendar">Calendar</button>
+      <button class="nav" data-page="risk">Risk</button>
+    </div>
+
+    <section id="dashboard" class="page active">
+      <div class="hero hero-main">
+        <div>
+          <p class="eyebrow">WELCOME BACK</p>
+          <h1>Your Trading <span>Command Center</span></h1>
+          <p>Track trades, understand your performance and improve your process.</p>
+        </div>
+        <button class="primary" onclick="openJournalForm()">＋ Add Trade</button>
       </div>
-      <label>Reason for entry<textarea id="reason" placeholder="Why did you take this trade?"></textarea></label>
-      <label>Lesson / mistake<textarea id="lesson" placeholder="What will you repeat or improve?"></textarea></label>
-      <button class="primary" type="submit">Save Trade</button>
-    </form>
-  </div>
-  <div class="panel"><div class="panelhead"><h2>Trade History</h2><input id="search" class="search" placeholder="Search instrument or strategy"></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Instrument</th><th>Side</th><th>Strategy</th><th>P&L</th><th>Emotion</th><th></th></tr></thead><tbody id="tradeTable"></tbody></table></div></div>
-</section>
 
-<section id="analytics" class="page">
-  <div class="hero"><div><p class="eyebrow">ANALYTICS</p><h1>Performance Analytics</h1><p>Find which setups, instruments and sessions work best for you.</p></div></div>
-  <div class="grid2">
-    <div class="panel"><h2>P&L by Strategy</h2><canvas id="strategyChart"></canvas></div>
-    <div class="panel"><h2>P&L by Instrument</h2><canvas id="instrumentChart"></canvas></div>
-  </div>
-  <div class="panel"><h2>Trading Process</h2><div id="insights" class="insights">Add some trades to generate insights.</div></div>
-</section>
+      <div class="command-card">
+        <div class="command-copy">
+          <span class="mini-label">TRADE X SYSTEM</span>
+          <h2>Built around your trading process.</h2>
+          <p>Your journal, analytics and risk tools stay connected in one private workspace.</p>
+        </div>
+        <div class="command-orb" aria-hidden="true"><span>X</span></div>
+      </div>
 
-<section id="calendar" class="page">
-  <div class="hero"><div><p class="eyebrow">REVIEW</p><h1>Trading Calendar</h1><p>See your performance day by day.</p></div></div>
-  <div class="panel"><div class="calendarhead"><button onclick="changeMonth(-1)">‹</button><h2 id="monthTitle"></h2><button onclick="changeMonth(1)">›</button></div><div class="week"><b>Sun</b><b>Mon</b><b>Tue</b><b>Wed</b><b>Thu</b><b>Fri</b><b>Sat</b></div><div id="calendarGrid" class="calgrid"></div></div>
-</section>
+      <div class="cards">
+        <div class="metric-card">
+          <div class="metric-icon purple">↗</div>
+          <div><small>NET P&amp;L</small><b id="netPnl">$0.00</b><span>Total Profit &amp; Loss</span></div>
+          <div class="mini-chart"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon violet">◎</div>
+          <div><small>WIN RATE</small><b id="winRate">0.0%</b><span>Your Win Percentage</span></div>
+          <div class="ring"><strong id="winRing">0%</strong></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon pink">▣</div>
+          <div><small>TRADES</small><b id="tradeCount">0</b><span>Total Trades Taken</span></div>
+          <div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon violet">♛</div>
+          <div><small>BEST STREAK</small><b id="bestStreak">0</b><span>Consecutive Wins</span></div>
+          <div class="streak-icon">✦</div>
+        </div>
+      </div>
 
-<section id="risk" class="page">
-  <div class="hero"><div><p class="eyebrow">RISK MANAGEMENT</p><h1>Risk Tools</h1><p>Plan the trade before entering it.</p></div></div>
-  <div class="grid2">
-    <div class="panel"><h2>Position Size Calculator</h2>
-      <div class="calc"><label>Account balance<input id="balance" type="number" value="1000"></label><label>Risk %<input id="riskPct" type="number" value="1" step=".1"></label><label>Entry<input id="rEntry" type="number" step="any"></label><label>Stop Loss<input id="rSl" type="number" step="any"></label><label>Value per price unit<input id="valueUnit" type="number" value="1" step="any"></label><button class="primary" onclick="calcSize()">Calculate</button><div class="result" id="sizeResult">Enter your numbers.</div></div>
-    </div>
-    <div class="panel"><h2>Risk / Reward</h2>
-      <div class="calc"><label>Entry<input id="rrEntry" type="number" step="any"></label><label>Stop Loss<input id="rrSl" type="number" step="any"></label><label>Take Profit<input id="rrTp" type="number" step="any"></label><button class="primary" onclick="calcRR()">Calculate R:R</button><div class="result" id="rrResult">Enter your levels.</div></div>
-    </div>
-  </div>
-</section>
-</main>
-<footer>TRADE X • Journal • Analyze • Evolve • Data is stored locally in your browser.</footer>
+      <div class="grid2">
+        <div class="panel chart-panel">
+          <div class="panelhead"><div><span class="mini-label">PERFORMANCE</span><h2>Equity Curve</h2></div><span id="streak" class="status-pill">No trades yet</span></div>
+          <canvas id="equityChart"></canvas>
+        </div>
+        <div class="panel">
+          <div class="panelhead"><div><span class="mini-label">SUMMARY</span><h2>Performance</h2></div></div>
+          <div class="stats">
+            <div><span>Winning trades</span><strong id="wins">0</strong></div>
+            <div><span>Losing trades</span><strong id="losses">0</strong></div>
+            <div><span>Average win</span><strong id="avgWin">$0.00</strong></div>
+            <div><span>Average loss</span><strong id="avgLoss">$0.00</strong></div>
+            <div><span>Best trade</span><strong id="best">$0.00</strong></div>
+            <div><span>Worst trade</span><strong id="worst">$0.00</strong></div>
+            <div><span>Profit factor</span><strong id="profitFactor">0.00</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="journal" class="page">
+      <div class="hero"><div><p class="eyebrow">JOURNAL</p><h1>Trade Journal</h1><p>Record the setup, execution and lesson behind every trade.</p></div></div>
+      <div class="panel" id="tradeForm">
+        <div class="panelhead"><div><span class="mini-label">NEW RECORD</span><h2>Add a Trade</h2></div></div>
+        <form id="form">
+          <div class="formgrid">
+            <label>Date<input id="date" type="date" required></label>
+            <label>Instrument<input id="instrument" placeholder="XAUUSD / BTCUSD" required></label>
+            <label>Direction<select id="direction"><option>BUY</option><option>SELL</option></select></label>
+            <label>Entry<input id="entry" type="number" step="any" placeholder="0" required></label>
+            <label>Exit<input id="exit" type="number" step="any" placeholder="0" required></label>
+            <label>Stop Loss<input id="sl" type="number" step="any" placeholder="Optional"></label>
+            <label>Take Profit<input id="tp" type="number" step="any" placeholder="Optional"></label>
+            <label>P&amp;L ($)<input id="pnl" type="number" step="any" placeholder="Profit/loss" required></label>
+            <label>Risk %<input id="risk" type="number" step="any" placeholder="1"></label>
+            <label>Strategy<input id="strategy" placeholder="Breakout / S&amp;R / etc."></label>
+            <label>Session<select id="session"><option>London</option><option>New York</option><option>Asia</option><option>Other</option></select></label>
+            <label>Emotion<select id="emotion"><option>Calm</option><option>Confident</option><option>FOMO</option><option>Revenge</option><option>Uncertain</option></select></label>
+          </div>
+          <label>Reason for entry<textarea id="reason" placeholder="Why did you take this trade?"></textarea></label>
+          <label>Lesson / mistake<textarea id="lesson" placeholder="What will you repeat or improve?"></textarea></label>
+          <button class="primary" type="submit">Save Trade</button>
+        </form>
+      </div>
+      <div class="panel">
+        <div class="panelhead"><div><span class="mini-label">HISTORY</span><h2>Trade History</h2></div><input id="search" class="search" placeholder="Search instrument or strategy"></div>
+        <div class="tablewrap"><table><thead><tr><th>Date</th><th>Instrument</th><th>Side</th><th>Strategy</th><th>P&amp;L</th><th>Emotion</th><th></th></tr></thead><tbody id="tradeTable"></tbody></table></div>
+      </div>
+    </section>
+
+    <section id="analytics" class="page">
+      <div class="hero"><div><p class="eyebrow">ANALYTICS</p><h1>Performance Analytics</h1><p>Find which setups, instruments and sessions work best for you.</p></div></div>
+      <div class="grid2">
+        <div class="panel"><span class="mini-label">STRATEGY</span><h2>P&amp;L by Strategy</h2><canvas id="strategyChart"></canvas></div>
+        <div class="panel"><span class="mini-label">INSTRUMENT</span><h2>P&amp;L by Instrument</h2><canvas id="instrumentChart"></canvas></div>
+      </div>
+      <div class="panel"><span class="mini-label">REVIEW</span><h2>Trading Process</h2><div id="insights" class="insights">Add some trades to generate insights.</div></div>
+    </section>
+
+    <section id="calendar" class="page">
+      <div class="hero"><div><p class="eyebrow">REVIEW</p><h1>Trading Calendar</h1><p>See your performance day by day.</p></div></div>
+      <div class="panel"><div class="calendarhead"><button onclick="changeMonth(-1)">‹</button><h2 id="monthTitle"></h2><button onclick="changeMonth(1)">›</button></div><div class="week"><b>Sun</b><b>Mon</b><b>Tue</b><b>Wed</b><b>Thu</b><b>Fri</b><b>Sat</b></div><div id="calendarGrid" class="calgrid"></div></div>
+    </section>
+
+    <section id="risk" class="page">
+      <div class="hero"><div><p class="eyebrow">RISK MANAGEMENT</p><h1>Risk Tools</h1><p>Plan the trade before entering it.</p></div></div>
+      <div class="grid2">
+        <div class="panel"><span class="mini-label">POSITION SIZING</span><h2>Position Size Calculator</h2>
+          <div class="calc"><label>Account balance<input id="balance" type="number" value="1000"></label><label>Risk %<input id="riskPct" type="number" value="1" step=".1"></label><label>Entry<input id="rEntry" type="number" step="any"></label><label>Stop Loss<input id="rSl" type="number" step="any"></label><label>Value per price unit<input id="valueUnit" type="number" value="1" step="any"></label><button class="primary" onclick="calcSize()">Calculate</button><div class="result" id="sizeResult">Enter your numbers.</div></div>
+        </div>
+        <div class="panel"><span class="mini-label">TRADE STRUCTURE</span><h2>Risk / Reward</h2>
+          <div class="calc"><label>Entry<input id="rrEntry" type="number" step="any"></label><label>Stop Loss<input id="rrSl" type="number" step="any"></label><label>Take Profit<input id="rrTp" type="number" step="any"></label><button class="primary" onclick="calcRR()">Calculate R:R</button><div class="result" id="rrResult">Enter your levels.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="themes" class="page">
+      <div class="hero"><div><p class="eyebrow">TRADE X EXPERIENCE</p><h1>Premium Themes</h1><p>Choose the atmosphere for your trading command center.</p></div></div>
+      <div class="theme-grid">
+        <button class="theme-card" data-theme="obsidian"><span class="theme-preview obsidian"></span><strong>Obsidian Pulse</strong><small>Black • Violet • Magenta</small></button>
+        <button class="theme-card" data-theme="violet"><span class="theme-preview violet"></span><strong>Violet Silk</strong><small>Deep Purple • Glass</small></button>
+        <button class="theme-card" data-theme="magenta"><span class="theme-preview magenta"></span><strong>Magenta Flow</strong><small>Black • Pink • Purple</small></button>
+        <button class="theme-card" data-theme="ultraviolet"><span class="theme-preview ultraviolet"></span><strong>Ultraviolet</strong><small>Electric Violet • Black</small></button>
+        <button class="theme-card" data-theme="pearl"><span class="theme-preview pearl"></span><strong>Pearl Luxe</strong><small>White • Silver • Violet</small></button>
+        <button class="theme-card" data-theme="rose"><span class="theme-preview rose"></span><strong>Rose Chrome</strong><small>Black • Rose • Glass</small></button>
+        <button class="theme-card" data-theme="velvet"><span class="theme-preview velvet"></span><strong>Neon Velvet</strong><small>Purple • Magenta</small></button>
+        <button class="theme-card" data-theme="midnight"><span class="theme-preview midnight"></span><strong>Midnight Glass</strong><small>Black • Lavender</small></button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>TRADE X • Your private trading workspace • Data is stored locally in your browser.</footer>
 <script src="script.js"></script>
 </body>
 </html>
