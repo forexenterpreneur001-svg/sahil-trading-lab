@@ -68,3 +68,33 @@ footer{text-align:center;color:#655d70;font-size:11px;padding:25px}
 @media(max-width:800px){.topbar{padding:0 18px}.sidebar{display:none}.app-shell{display:block}.content{padding:18px 14px 50px}.mobile-nav{display:flex;gap:6px;overflow:auto;margin-bottom:20px;padding:5px}.mobile-nav .nav{white-space:nowrap;padding:10px 13px}.hero{align-items:flex-start;flex-direction:column}.hero h1{font-size:32px}.command-card{min-height:220px}.command-orb{right:5%;width:105px;height:105px}.command-orb span{font-size:40px}.cards{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.formgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.brand strong{font-size:20px}.brand small{font-size:10px}.brand-mark{width:48px;height:48px}.top-actions .icon-btn{display:none}.hero h1{font-size:28px}.hero p:not(.eyebrow){font-size:14px}.command-card{padding:24px}.command-copy{max-width:65%}.command-copy h2{font-size:21px}.command-orb{right:4%;width:82px;height:82px}.command-orb span{font-size:30px}.metric-card{padding:20px}.metric-card b{font-size:29px}.formgrid{grid-template-columns:1fr}.theme-grid{grid-template-columns:1fr}.week,.calgrid{gap:3px}.calday{min-height:62px;padding:5px}.calday .daypnl{margin-top:10px;font-size:8px}}
 body[data-theme="pearl"]{--bg:#f3eff8;--text:#1b1622;--muted:#6e6579}.theme-pearl .ambient{filter:saturate(.7) brightness(1.25)}
+
+/* ===== TRADE X THEME ENGINE v2 ===== */
+body[data-theme="obsidian"] .ambient{background:radial-gradient(circle at 20% 15%,rgba(105,35,220,.32),transparent 30%),radial-gradient(circle at 80% 35%,rgba(225,30,170,.24),transparent 34%),linear-gradient(135deg,#020207,#100513 55%,#05030a)}
+body[data-theme="violet"] .ambient{background:radial-gradient(circle at 18% 18%,rgba(128,55,255,.38),transparent 31%),radial-gradient(circle at 78% 55%,rgba(91,44,255,.28),transparent 34%),linear-gradient(135deg,#03020a,#120526 55%,#05030b)}
+body[data-theme="magenta"] .ambient{background:radial-gradient(circle at 20% 65%,rgba(235,35,145,.34),transparent 31%),radial-gradient(circle at 82% 28%,rgba(155,35,255,.30),transparent 34%),linear-gradient(135deg,#030207,#170511 52%,#0a0310)}
+body[data-theme="ultraviolet"] .ambient{background:radial-gradient(circle at 50% 25%,rgba(126,25,255,.42),transparent 32%),radial-gradient(circle at 90% 75%,rgba(73,20,190,.30),transparent 34%),linear-gradient(135deg,#010106,#0b0020 52%,#030208)}
+body[data-theme="rose"] .ambient{background:radial-gradient(circle at 75% 25%,rgba(255,55,175,.34),transparent 31%),radial-gradient(circle at 20% 75%,rgba(190,42,255,.25),transparent 33%),linear-gradient(135deg,#030207,#190611 52%,#09030b)}
+body[data-theme="velvet"] .ambient{background:radial-gradient(circle at 48% 48%,rgba(166,42,255,.40),transparent 33%),radial-gradient(circle at 85% 75%,rgba(239,35,174,.28),transparent 32%),linear-gradient(135deg,#040207,#1c061a 52%,#09030d)}
+body[data-theme="midnight"] .ambient{background:radial-gradient(circle at 78% 18%,rgba(158,116,255,.34),transparent 30%),radial-gradient(circle at 20% 75%,rgba(73,72,170,.25),transparent 34%),linear-gradient(135deg,#010207,#090b18 55%,#03040a)}
+
+body[data-theme="pearl"]{--bg:#eeeaf4;--text:#211a2a;--muted:#665d70}
+body[data-theme="pearl"] .ambient{background:radial-gradient(circle at 20% 15%,rgba(205,174,255,.65),transparent 32%),radial-gradient(circle at 80% 40%,rgba(255,166,218,.45),transparent 34%),linear-gradient(135deg,#f8f5fb,#e9def4 55%,#f5edf9)}
+body[data-theme="pearl"] .ambient:after{background:linear-gradient(rgba(80,50,100,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(80,50,100,.06) 1px,transparent 1px)}
+body[data-theme="pearl"] .topbar,body[data-theme="pearl"] .sidebar{background:rgba(248,245,252,.72);border-color:rgba(105,70,130,.16)}
+body[data-theme="pearl"] .panel,body[data-theme="pearl"] .metric-card,body[data-theme="pearl"] .command-card,body[data-theme="pearl"] .theme-card{background:rgba(255,255,255,.58);border-color:rgba(105,70,130,.18);box-shadow:0 20px 60px rgba(72,40,100,.12)}
+body[data-theme="pearl"] .nav,body[data-theme="pearl"] .side-link{color:#665d70}body[data-theme="pearl"] .nav:hover,body[data-theme="pearl"] .nav.active{color:#24192d}
+body[data-theme="pearl"] input,body[data-theme="pearl"] select,body[data-theme="pearl"] textarea{background:rgba(255,255,255,.78);color:#211a2a;border-color:rgba(105,70,130,.20)}
+body[data-theme="pearl"] .command-copy p,body[data-theme="pearl"] .hero p:not(.eyebrow),body[data-theme="pearl"] .metric-card small,body[data-theme="pearl"] .metric-card span{color:#665d70}
+
+/* Make dark themes visibly different throughout the glass UI */
+body[data-theme="violet"] .primary{background:linear-gradient(135deg,#7438ff,#a04cff)}
+body[data-theme="ultraviolet"] .primary{background:linear-gradient(135deg,#6424ff,#b32fff)}
+body[data-theme="magenta"] .primary{background:linear-gradient(135deg,#a52dff,#f02a9c)}
+body[data-theme="rose"] .primary{background:linear-gradient(135deg,#a83cff,#ff4db8)}
+body[data-theme="velvet"] .primary{background:linear-gradient(135deg,#8f32ff,#e52ba9)}
+body[data-theme="midnight"] .primary{background:linear-gradient(135deg,#6e63ff,#9d82ff)}
+body[data-theme="violet"] .metric-icon,body[data-theme="violet"] .metric-icon.violet{background:rgba(106,65,255,.18);color:#a88aff}
+body[data-theme="magenta"] .metric-icon.pink{color:#ff71c9;background:rgba(255,45,166,.15)}
+body[data-theme="rose"] .metric-icon.pink{color:#ff83ca;background:rgba(255,70,180,.16)}
+body[data-theme="midnight"] .metric-icon{background:rgba(105,105,255,.16);color:#aaa3ff}
