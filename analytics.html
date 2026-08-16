@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trade X — Analytics</title>
+  <link rel="stylesheet" href="analytics.css" />
+</head>
+<body>
+  <main class="analytics-page">
+    <header class="analytics-head">
+      <div>
+        <span class="eyebrow">TRADE X INTELLIGENCE</span>
+        <h1>Performance Analytics</h1>
+        <p>See the story behind your numbers.</p>
+      </div>
+      <div class="period-switcher" role="group" aria-label="Period">
+        <button class="period active" data-period="7D">7D</button>
+        <button class="period" data-period="30D">30D</button>
+        <button class="period" data-period="90D">90D</button>
+        <button class="period" data-period="ALL">ALL</button>
+      </div>
+    </header>
+
+    <section class="metric-grid">
+      <article class="metric-card">
+        <span>NET P&amp;L</span><strong id="pnl">$36.00</strong><small>Across recorded trades</small>
+      </article>
+      <article class="metric-card">
+        <span>WIN RATE</span><strong id="winrate">60.0%</strong><small>Winning trades</small>
+      </article>
+      <article class="metric-card">
+        <span>AVG R / TRADE</span><strong id="avgr">+1.20R</strong><small>Based on journal data</small>
+      </article>
+      <article class="metric-card">
+        <span>MAX DRAWDOWN</span><strong id="drawdown">−3.4%</strong><small>Peak-to-trough</small>
+      </article>
+    </section>
+
+    <section class="panel equity-panel">
+      <div class="panel-head">
+        <div>
+          <span class="section-label">EQUITY</span>
+          <h2>Performance curve</h2>
+        </div>
+        <span class="status-dot"><i></i> Journal data</span>
+      </div>
+      <div class="chart-wrap">
+        <svg viewBox="0 0 900 300" preserveAspectRatio="none" class="equity-chart" aria-label="Equity curve">
+          <defs>
+            <linearGradient id="fill" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#b98cff" stop-opacity=".28"/>
+              <stop offset="100%" stop-color="#b98cff" stop-opacity="0"/>
+            </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="4" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <path class="area" d="M0 245 L70 230 L140 238 L210 195 L280 210 L350 168 L420 178 L490 132 L560 145 L630 108 L700 118 L770 76 L840 92 L900 48 L900 300 L0 300 Z"/>
+          <path class="line" d="M0 245 L70 230 L140 238 L210 195 L280 210 L350 168 L420 178 L490 132 L560 145 L630 108 L700 118 L770 76 L840 92 L900 48"/>
+        </svg>
+        <div class="chart-axis"><span>START</span><span>RECENT</span></div>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <article class="panel">
+        <div class="panel-head"><div><span class="section-label">STRATEGIES</span><h2>What is working</h2></div></div>
+        <div class="rank-list">
+          <div class="rank"><div><b>Breakout</b><small>18 trades · 67% win</small></div><strong>+2.8R</strong></div>
+          <div class="rank"><div><b>Trend Pullback</b><small>14 trades · 57% win</small></div><strong>+1.9R</strong></div>
+          <div class="rank"><div><b>Range Reversal</b><small>9 trades · 44% win</small></div><strong>−0.6R</strong></div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-head"><div><span class="section-label">MARKETS</span><h2>Instrument performance</h2></div></div>
+        <div class="rank-list">
+          <div class="rank"><div><b>BTCUSD</b><small>16 trades · Avg +1.4R</small></div><strong>+3.1R</strong></div>
+          <div class="rank"><div><b>XAUUSD</b><small>13 trades · Avg +0.9R</small></div><strong>+1.7R</strong></div>
+          <div class="rank"><div><b>EURUSD</b><small>12 trades · Avg −0.2R</small></div><strong>−0.8R</strong></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="insight-panel">
+      <div class="insight-icon">TX</div>
+      <div>
+        <span class="section-label">TRADE X INSIGHT</span>
+        <h2>Review the process, not just the result.</h2>
+        <p>Your journal shows stronger consistency when your planned risk and setup notes are completed before the trade.</p>
+      </div>
+      <button class="ghost-btn" type="button">View journal</button>
+    </section>
+  </main>
+  <script src="analytics.js"></script>
+</body>
+</html>
